@@ -1,4 +1,4 @@
-from globals import Toplevel, Label, Button
+from globals import App, Toplevel, Label, Button
 from question2 import Q2
 
 
@@ -6,21 +6,24 @@ class Q1:
     def __init__(self, app):
         self.app = app
         self.root = Toplevel()
+
         self.root.geometry("500x250")
-        self.root.title("Your Range of Thought")
-        self.root.protocol("WM_DELETE_WINDOW", self.app.exit)
+        self.root.title("The Importance of Interpreting Instructions")
+        Label(self.root, text="Welcome to Raphe's Quiz.\nTry to think outside the box,\nand use all the clues to find the solution.\nGood luck!\n"
+        ).pack()
+        Label(self.root, text="Before beginning, first get in control of the situation.").pack()
+        self.button = Button(self.root, text="Begin")
+        self.button.bind("<Control-Button-1>", self.next)
+        self.button.pack()
+        self.root.mainloop()
 
-        Label(self.root, text="This lesson is to teach you how to\nmaximize your range of thought so\nthat you can discover new things").place(x=0,y=0)
-        button = Button(self.root, text="New Things", command=self.next, takefocus=0).place(x=1000, y=1000)
-
-    def next(self):
-        Q2(self.app)
+    def next(self, event):
         self.root.destroy()
+        Q2(self.app)
 
 
 if __name__ == "__main__":
-    from globals import Tk
-    root = Tk()
-    root.withdraw()
-    Q1(root)
-    root.mainloop()
+    from globals import App
+    app = App()
+    Q1(app)
+    app.root.mainloop()
