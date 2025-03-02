@@ -1,4 +1,5 @@
 from globals import Toplevel, Label, Button, Entry
+from question6 import Q6
 
 
 class Q5:
@@ -18,9 +19,8 @@ class Q5:
         if not self.entry.get() == "-999": 
             self.entry.delete(0, "end")
         else:
-            print("you win")
             self.root.destroy()
-            self.app.exit()
+            Q6(self.app)
 
 
 if __name__ == "__main__":
