@@ -1,5 +1,5 @@
 from globals import Tk, Label, Button
-from question_1 import Q1
+from question1 import Q1
 
 
 class Quiz:
@@ -11,19 +11,18 @@ class Quiz:
         Label(self.root, text="Welcome to Raphe's Quiz.\nTry to think outside the box,\nand use all the clues to find the solution.\nGood luck!\n"
         ).pack()
         Label(self.root, text="Before beginning, first get in control of the situation.").pack()
-        self.root.bind("<Control_L>", self.control)
-        self.root.bind("<Control_R>", self.control)
-        Button(self.root, text="Begin", command=self.next).pack()
-        self.bool = False
+        self.button = Button(self.root, text="Begin")
+        self.button.bind("<Control-Button-1>", self.next)
+        self.button.pack()
         self.root.mainloop()
 
-    def control(self, event):
-        self.bool = True
+    def next(self, event):
+        self.root.withdraw()
+        Q1(self)
 
-    def next(self):
-        if self.bool:
-            self.root.withdraw()
-            Q1(self.root)
+    def exit(self):
+        self.root.destroy()
+
 
 
 if __name__ == "__main__":

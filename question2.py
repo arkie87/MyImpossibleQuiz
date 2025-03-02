@@ -1,4 +1,5 @@
 from globals import Toplevel, Label, Button
+from question3 import Q3
 
 
 class Q2:
@@ -6,6 +7,8 @@ class Q2:
         self.app = app
         self.root = Toplevel()
         self.root.title("Click All of the Above")
+        self.root.protocol("WM_DELETE_WINDOW", self.app.exit)
+
         Label(self.root, text="The questions obey the same basic rules.").pack()
         Label(self.root, text="Sometimes, more than one answer is right.").pack()
         Label(self.root, text="For instance, in this question, all of the above are correct").pack()
@@ -56,9 +59,8 @@ class Q2:
 
     def next(self):
         if all(self.bools):
-            print("you win")
             self.root.destroy()
-            self.app.destroy()
+            Q3(self.app)
 
 
 if __name__ == "__main__":
